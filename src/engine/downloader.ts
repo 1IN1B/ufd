@@ -176,10 +176,41 @@ export class UfdLoader extends EventEmitter {
         this.emit('initialized', this.state);
     }
 
-    async start() {
+    start() {
+        this.state.isPaused = false;
+        this._runWorkers();
+    }
+
+    pause() {
+        this.state.isPaused = true;
+        saveState(this.state);
+        for (const worker of this.workers) {
+            worker.stop();
+        }
+        this.emit('paused', this.state);
+    }
+
+    resume() {
+        this.state.isPaused = false;
+        for (const segment of this.state.segments) {
+            if (segment.status === 'paused') {
+                segment.status = 'pending';
+            }
+        }
+        this._runWorkers();
+        this.emit('resumed', this.state);
+    }
+
+    private _runWorkers() {
         let lastSave = Date.now();
-        const promises = this.state.segments.map((segment) => {
-            if (segment.status === 'completed') return Promise.resolve();
+        let pausedEmitted = false;
+        this.workers = [];
+
+        for (const segment of this.state.segments) {
+            if (segment.status === 'completed') continue;
+            if (segment.status !== 'failed') {
+                segment.status = 'downloading';
+            }
 
             const worker = new DownloadWorker(
                 segment,
@@ -189,8 +220,6 @@ export class UfdLoader extends EventEmitter {
                     segment.current += bytes;
                     if (segment.current >= segment.total) {
                         segment.status = 'completed';
-                    } else {
-                        segment.status = 'downloading';
                     }
 
                     if (Date.now() - lastSave > 1000) {
@@ -199,19 +228,33 @@ export class UfdLoader extends EventEmitter {
                     }
 
                     this.emit('progress', this.state);
+
+                    if (!this.state.isPaused && this.state.segments.every(s => s.status === 'completed')) {
+                        deleteState(this.state.filename);
+                        this.emit('completed', this.state);
+                    }
                 }
             );
-            this.workers.push(worker);
-            return worker.start();
-        });
 
-        try {
-            await Promise.all(promises);
-            deleteState(this.state.filename);
-            this.emit('completed', this.state);
-        } catch (error) {
-            saveState(this.state);
-            this.emit('error', error);
+            this.workers.push(worker);
+
+            worker.start().then(() => {
+                if (this.state.isPaused) {
+                    if (segment.status !== 'completed') {
+                        segment.status = 'paused';
+                    }
+                    if (!pausedEmitted) {
+                        pausedEmitted = true;
+                        saveState(this.state);
+                        this.emit('paused', this.state);
+                    }
+                }
+            }).catch((err) => {
+                if (!this.state.isPaused) {
+                    segment.status = 'failed';
+                    this.emit('error', err);
+                }
+            });
         }
     }
 

@@ -4,286 +4,364 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UFDLoader - Ultra Fast Downloader</title>
+    <meta name="description" content="Accelerate your downloads with multi-connection technology. Terminal-based performance with modern UI.">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Terminal Header -->
-    <div class="terminal-header">
-        <div class="terminal-buttons">
-            <div class="terminal-btn close"></div>
-            <div class="terminal-btn minimize"></div>
-            <div class="terminal-btn maximize"></div>
-        </div>
-        <div class="terminal-title">ufdloader@terminal:~$</div>
-    </div>
-
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="logo">
-                <i class="fas fa-download"></i>
-                <span>UFDLoader</span>
+    <nav class="navbar" id="navbar">
+        <div class="nav-inner">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <span class="logo-text">UFDLoader</span>
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="#features">Features</a>
+                <a href="#how-it-works">How It Works</a>
+                <a href="#usage">Usage</a>
+                <a href="#download">Download</a>
+                <a href="https://github.com/Bibhuti05/UFDLoader" target="_blank" rel="noopener">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
             </div>
-            <div class="nav-menu">
-                <a href="#features" class="nav-link">Features</a>
-                <a href="#how-it-works" class="nav-link">How It Works</a>
-                <a href="#screenshots" class="nav-link">Screenshots</a>
-                <a href="#download" class="nav-link">Download</a>
-            </div>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
+            </button>
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-content">
-            <div class="terminal-prompt">
-                <span class="prompt-symbol">$</span>
-                <span class="command">./ufdloader --help</span>
-            </div>
-            <h1 class="hero-title">
-                <span class="terminal-text">UFDLoader</span>
-                <br>
-                <span class="gradient-text">Ultra Fast Downloader</span>
-            </h1>
-            <p class="hero-subtitle">
-                Accelerate your downloads with multi-connection technology. 
-                Experience terminal-based performance with modern UI.
-            </p>
-            <div class="hero-stats">
-                <div class="stat">
-                    <i class="fas fa-tachometer-alt"></i>
-                    <span>8x Faster</span>
+        <div class="hero-inner">
+            <div class="hero-left">
+                <div class="hero-badge">
+                    <span class="badge-dot"></span>
+                    Open Source Download Accelerator
                 </div>
-                <div class="stat">
-                    <i class="fas fa-code-branch"></i>
-                    <span>Resume Support</span>
-                </div>
-                <div class="stat">
-                    <i class="fas fa-terminal"></i>
-                    <span>Terminal UI</span>
-                </div>
-            </div>
-            <div class="hero-buttons">
-                <a href="#download" class="btn btn-primary">
-                    <i class="fas fa-download"></i>
-                    Download Now
-                </a>
-                <a href="https://github.com/ufdloader/ufdloader" class="btn btn-secondary">
-                    <i class="fab fa-github"></i>
-                    View Source
-                </a>
-            </div>
-        </div>
-        <div class="hero-visual">
-            <div class="terminal-window">
-                <div class="terminal-content">
-                    <div class="terminal-line">
-                        <span class="prompt">$</span>
-                        <span class="command">./ufdloader https://example.com/large-file.zip</span>
+                <h1 class="hero-title">
+                    Downloads at<br>
+                    <span class="accent">Terminal Speed</span>
+                </h1>
+                <p class="hero-desc">
+                    Multi-connection downloading with resume support, real-time progress, and cross-platform compatibility. Built for speed.
+                </p>
+                <div class="hero-metrics">
+                    <div class="metric">
+                        <span class="metric-value">8x</span>
+                        <span class="metric-label">Faster</span>
                     </div>
-                    <div class="terminal-output">
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 75%;"></div>
-                        </div>
-                        <div class="download-info">
-                            <span>Speed: 8.5 MB/s</span>
-                            <span>75% Complete</span>
-                        </div>
+                    <div class="metric-divider"></div>
+                    <div class="metric">
+                        <span class="metric-value">Auto</span>
+                        <span class="metric-label">Resume</span>
+                    </div>
+                    <div class="metric-divider"></div>
+                    <div class="metric">
+                        <span class="metric-value">3</span>
+                        <span class="metric-label">Platforms</span>
                     </div>
                 </div>
+                <div class="hero-actions">
+                    <a href="#download" class="btn-primary">
+                        <i class="fas fa-download"></i> Download Now
+                    </a>
+                    <a href="https://github.com/Bibhuti05/UFDLoader" target="_blank" rel="noopener" class="btn-outline">
+                        <i class="fab fa-github"></i> View Source
+                    </a>
+                </div>
+            </div>
+            <div class="hero-right">
+                <div class="terminal-demo">
+                    <div class="term-header">
+                        <div class="term-dots">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                        </div>
+                        <span class="term-title">ufdloader</span>
+                    </div>
+                    <div class="term-body">
+                        <div class="term-line">
+                            <span class="term-prompt">$</span>
+                            <span class="term-cmd" id="typingTarget">./ufdloader https://example.com/large-file.zip</span>
+                        </div>
+                        <div class="term-output">
+                            <div class="term-file">
+                                <i class="fas fa-file-archive"></i>
+                                <span>large-file.zip</span>
+                                <span class="term-size">2.4 GB</span>
+                            </div>
+                            <div class="term-progress-wrap">
+                                <div class="term-progress" id="heroProgress">
+                                    <div class="term-progress-fill" id="heroProgressFill"></div>
+                                </div>
+                                <span class="term-percent" id="heroPercent">0%</span>
+                            </div>
+                            <div class="term-stats">
+                                <div class="term-stat">
+                                    <span class="term-stat-label">Speed</span>
+                                    <span class="term-stat-value" id="heroSpeed">0 MB/s</span>
+                                </div>
+                                <div class="term-stat">
+                                    <span class="term-stat-label">Connections</span>
+                                    <span class="term-stat-value">8</span>
+                                </div>
+                                <div class="term-stat">
+                                    <span class="term-stat-label">ETA</span>
+                                    <span class="term-stat-value" id="heroEta">--:--</span>
+                                </div>
+                            </div>
+                            <div class="term-segments">
+                                <div class="term-seg">
+                                    <span class="seg-id">#01</span>
+                                    <div class="seg-bar"><div class="seg-fill" data-target="75"></div></div>
+                                    <span class="seg-pct">75%</span>
+                                </div>
+                                <div class="term-seg">
+                                    <span class="seg-id">#02</span>
+                                    <div class="seg-bar"><div class="seg-fill" data-target="60"></div></div>
+                                    <span class="seg-pct">60%</span>
+                                </div>
+                                <div class="term-seg">
+                                    <span class="seg-id">#03</span>
+                                    <div class="seg-bar"><div class="seg-fill" data-target="85"></div></div>
+                                    <span class="seg-pct">85%</span>
+                                </div>
+                                <div class="term-seg">
+                                    <span class="seg-id">#04</span>
+                                    <div class="seg-bar"><div class="seg-fill" data-target="45"></div></div>
+                                    <span class="seg-pct">45%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+        <div class="hero-glow"></div>
     </section>
 
-    <!-- Features Section -->
     <section id="features" class="features">
-        <div class="container">
-            <h2 class="section-title">
-                <span class="terminal-text">Features</span>
-            </h2>
+        <div class="section-inner">
+            <div class="section-header">
+                <span class="section-tag">Features</span>
+                <h2 class="section-title">Engineered for Performance</h2>
+                <p class="section-desc">Every feature is designed to maximize download speed and reliability.</p>
+            </div>
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-rocket"></i>
+                    <div class="feature-icon-wrap">
+                        <i class="fas fa-network-wired"></i>
                     </div>
-                    <h3>Multi-Connection</h3>
-                    <p>Split downloads into multiple segments for maximum speed acceleration</p>
+                    <h3>Multi-Connection Downloads</h3>
+                    <p>Split files into parallel segments across multiple connections, saturating your bandwidth for maximum throughput.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-redo"></i>
+                    <div class="feature-icon-wrap">
+                        <i class="fas fa-play-circle"></i>
                     </div>
                     <h3>Resume Support</h3>
-                    <p>Pause and resume downloads anytime with state persistence</p>
+                    <p>Interrupted downloads pick up exactly where they left off. State is persisted automatically between sessions.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-desktop"></i>
+                    <div class="feature-icon-wrap">
+                        <i class="fas fa-laptop-code"></i>
                     </div>
                     <h3>Cross-Platform</h3>
-                    <p>Available for Linux, macOS, and Windows with native performance</p>
+                    <p>Native binaries for Linux, macOS (Intel & Apple Silicon), and Windows. One tool, every platform.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-terminal"></i>
+                    <div class="feature-icon-wrap">
+                        <i class="fas fa-chart-bar"></i>
                     </div>
-                    <h3>Terminal UI</h3>
-                    <p>Beautiful terminal interface with real-time progress visualization</p>
+                    <h3>Real-Time Progress</h3>
+                    <p>Interactive terminal UI with per-connection progress bars, speed metrics, and ETA estimates in real time.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon-wrap">
+                        <i class="fas fa-folder-open"></i>
+                    </div>
+                    <h3>Interactive Folder Picker</h3>
+                    <p>Browse and select download destinations with a built-in keyboard-navigable directory browser.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon-wrap">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Error Recovery</h3>
+                    <p>Automatic retry on failed connections. Smart error handling keeps downloads moving without manual intervention.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- How It Works Section -->
     <section id="how-it-works" class="how-it-works">
-        <div class="container">
-            <h2 class="section-title">
-                <span class="terminal-text">How It Works</span>
-            </h2>
-            <div class="workflow">
-                <div class="workflow-step">
-                    <div class="step-number">1</div>
-                    <div class="step-content">
-                        <h3>Segment Analysis</h3>
-                        <p>UFDLoader sends a HEAD request to determine file size and server support for range requests</p>
+        <div class="section-inner">
+            <div class="section-header">
+                <span class="section-tag">How It Works</span>
+                <h2 class="section-title">Parallel Download Pipeline</h2>
+                <p class="section-desc">UFDLoader breaks files into segments and downloads them concurrently for dramatic speed gains.</p>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-num">01</div>
+                    <div class="step-body">
+                        <h3>Range Detection</h3>
+                        <p>A HEAD request probes the server for file size and range-request support to determine segmentation strategy.</p>
                     </div>
                 </div>
-                <div class="workflow-step">
-                    <div class="step-number">2</div>
-                    <div class="step-content">
-                        <h3>Connection Splitting</h3>
-                        <p>The file is divided into segments, each assigned to a separate connection thread</p>
+                <div class="step-line"></div>
+                <div class="step">
+                    <div class="step-num">02</div>
+                    <div class="step-body">
+                        <h3>Segment Splitting</h3>
+                        <p>The file is divided into equal byte ranges, each assigned to an independent HTTP connection thread.</p>
                     </div>
                 </div>
-                <div class="workflow-step">
-                    <div class="step-number">3</div>
-                    <div class="step-content">
-                        <h3>Parallel Download</h3>
-                        <p>Multiple segments download simultaneously, maximizing bandwidth utilization</p>
+                <div class="step-line"></div>
+                <div class="step">
+                    <div class="step-num">03</div>
+                    <div class="step-body">
+                        <h3>Parallel Fetching</h3>
+                        <p>All segments download simultaneously, maximizing bandwidth utilization across every connection.</p>
                     </div>
                 </div>
-                <div class="workflow-step">
-                    <div class="step-number">4</div>
-                    <div class="step-content">
-                        <h3>Smart Assembly</h3>
-                        <p>Segments are written directly to their file positions and assembled in real-time</p>
+                <div class="step-line"></div>
+                <div class="step">
+                    <div class="step-num">04</div>
+                    <div class="step-body">
+                        <h3>Direct Assembly</h3>
+                        <p>Segments write directly to their final byte offsets in the output file. No merge step needed.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Screenshots Section -->
-    <section id="screenshots" class="screenshots">
-        <div class="container">
-            <h2 class="section-title">
-                <span class="terminal-text">Terminal Interface</span>
-            </h2>
-            <div class="screenshots-grid">
-                <div class="screenshot-card">
-                    <div class="screenshot-placeholder">
-                        <i class="fas fa-image"></i>
-                        <span>Download Progress</span>
+    <section id="usage" class="usage">
+        <div class="section-inner">
+            <div class="section-header">
+                <span class="section-tag">Usage</span>
+                <h2 class="section-title">Get Started in Seconds</h2>
+                <p class="section-desc">No config files, no setup. Just run and download.</p>
+            </div>
+            <div class="usage-grid">
+                <div class="usage-card">
+                    <div class="usage-label">Basic Download</div>
+                    <div class="usage-terminal">
+                        <code><span class="cmd-prompt">$</span> ufdloader https://example.com/file.zip</code>
                     </div>
-                    <p>Real-time download progress with per-connection statistics</p>
+                    <p class="usage-note">Downloads with 8 connections by default. Interactive folder picker launches automatically.</p>
                 </div>
-                <div class="screenshot-card">
-                    <div class="screenshot-placeholder">
-                        <i class="fas fa-image"></i>
-                        <span>Folder Selection</span>
+                <div class="usage-card">
+                    <div class="usage-label">Custom Connections</div>
+                    <div class="usage-terminal">
+                        <code><span class="cmd-prompt">$</span> ufdloader -c 16 https://example.com/file.zip</code>
                     </div>
-                    <p>Interactive folder picker with keyboard navigation</p>
+                    <p class="usage-note">Specify the number of parallel connections to use for maximum throughput.</p>
                 </div>
-                <div class="screenshot-card">
-                    <div class="screenshot-placeholder">
-                        <i class="fas fa-image"></i>
-                        <span>Resume Capability</span>
+                <div class="usage-card">
+                    <div class="usage-label">Direct Output</div>
+                    <div class="usage-terminal">
+                        <code><span class="cmd-prompt">$</span> ufdloader -o ~/Downloads/file.zip https://example.com/file.zip</code>
                     </div>
-                    <p>Automatic resume from previous download sessions</p>
+                    <p class="usage-note">Skip the folder picker and download directly to a specified path.</p>
+                </div>
+                <div class="usage-card">
+                    <div class="usage-label">Resume Download</div>
+                    <div class="usage-terminal">
+                        <code><span class="cmd-prompt">$</span> ufdloader https://example.com/file.zip</code>
+                    </div>
+                    <p class="usage-note">If a partial file exists, UFDLoader automatically resumes from the last byte.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Download Section -->
-    <section id="download" class="download">
-        <div class="container">
-            <h2 class="section-title">
-                <span class="terminal-text">Download UFDLoader</span>
-            </h2>
+    <section id="download" class="download-section">
+        <div class="section-inner">
+            <div class="section-header">
+                <span class="section-tag">Download</span>
+                <h2 class="section-title">Available on Every Platform</h2>
+                <p class="section-desc">Native binaries. No runtime dependencies. Just download and run.</p>
+            </div>
             <div class="download-grid">
                 <div class="download-card">
-                    <div class="platform-icon">
+                    <div class="download-platform">
                         <i class="fab fa-linux"></i>
                     </div>
                     <h3>Linux</h3>
-                    <p>Native binary for Linux x64 systems</p>
-                    <button class="btn btn-primary download-btn" data-platform="linux">
-                        <i class="fas fa-download"></i>
-                        Download Linux
+                    <p>x64 binary</p>
+                    <button class="btn-primary download-btn" data-platform="linux">
+                        <i class="fas fa-download"></i> Download
                     </button>
                 </div>
-                <div class="download-card">
-                    <div class="platform-icon">
+                <div class="download-card featured">
+                    <div class="download-platform">
                         <i class="fab fa-apple"></i>
                     </div>
                     <h3>macOS</h3>
-                    <p>Universal binary for Intel and Apple Silicon</p>
-                    <div class="mac-options">
-                        <button class="btn btn-primary download-btn" data-platform="mac-intel">
-                            <i class="fas fa-microchip"></i>
-                            Intel
+                    <p>Intel & Apple Silicon</p>
+                    <div class="download-options">
+                        <button class="btn-primary download-btn" data-platform="mac-intel">
+                            <i class="fas fa-microchip"></i> Intel
                         </button>
-                        <button class="btn btn-primary download-btn" data-platform="mac-arm">
-                            <i class="fas fa-cpu"></i>
-                            Apple Silicon
+                        <button class="btn-primary download-btn" data-platform="mac-arm">
+                            <i class="fas fa-cpu"></i> M1/M2
                         </button>
                     </div>
                 </div>
                 <div class="download-card">
-                    <div class="platform-icon">
+                    <div class="download-platform">
                         <i class="fab fa-windows"></i>
                     </div>
                     <h3>Windows</h3>
-                    <p>Native executable for Windows x64 systems</p>
-                    <button class="btn btn-primary download-btn" data-platform="windows">
-                        <i class="fas fa-download"></i>
-                        Download Windows
+                    <p>x64 executable</p>
+                    <button class="btn-primary download-btn" data-platform="windows">
+                        <i class="fas fa-download"></i> Download
                     </button>
                 </div>
             </div>
-            <div class="source-code">
+            <div class="download-alt">
                 <p>Prefer building from source?</p>
-                <a href="https://github.com/ufdloader/ufdloader" class="btn btn-secondary">
-                    <i class="fab fa-github"></i>
-                    View on GitHub
+                <a href="https://github.com/Bibhuti05/UFDLoader" target="_blank" rel="noopener" class="btn-outline">
+                    <i class="fab fa-github"></i> View on GitHub
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <i class="fas fa-download"></i>
-                    <span>UFDLoader</span>
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <a href="#" class="logo">
+                        <div class="logo-icon"><i class="fas fa-bolt"></i></div>
+                        <span class="logo-text">UFDLoader</span>
+                    </a>
+                    <p>Terminal-based download accelerator built for speed and reliability.</p>
                 </div>
-                <div class="footer-links">
-                    <a href="https://github.com/ufdloader/ufdloader">GitHub</a>
-                    <a href="https://github.com/ufdloader/ufdloader/issues">Issues</a>
-                    <a href="https://github.com/ufdloader/ufdloader/blob/main/LICENSE">License</a>
+                <div class="footer-links-group">
+                    <div class="footer-col">
+                        <h4>Product</h4>
+                        <a href="#features">Features</a>
+                        <a href="#download">Download</a>
+                        <a href="#usage">Usage</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Resources</h4>
+                        <a href="https://github.com/Bibhuti05/UFDLoader" target="_blank" rel="noopener">GitHub</a>
+                        <a href="https://github.com/Bibhuti05/UFDLoader/issues" target="_blank" rel="noopener">Issues</a>
+                        <a href="https://github.com/Bibhuti05/UFDLoader/blob/main/LICENSE" target="_blank" rel="noopener">License</a>
+                    </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 UFDLoader. Built with performance in mind.</p>
+                <p>&copy; 2026 UFDLoader. Built with performance in mind.</p>
             </div>
         </div>
     </footer>

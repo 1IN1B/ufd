@@ -4,7 +4,7 @@ export interface DownloadSegment {
     end: number;
     current: number;
     total: number;
-    status: 'pending' | 'downloading' | 'completed' | 'failed';
+    status: 'pending' | 'downloading' | 'paused' | 'completed' | 'failed';
 }
 
 export interface DownloadState {

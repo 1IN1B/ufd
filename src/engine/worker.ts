@@ -8,6 +8,7 @@ export class DownloadWorker {
     private filePath: string;
     private onProgress: (bytes: number) => void;
     private abortController: AbortController;
+    private aborted = false;
 
     constructor(
         segment: DownloadSegment,
@@ -20,6 +21,10 @@ export class DownloadWorker {
         this.filePath = filePath;
         this.onProgress = onProgress;
         this.abortController = new AbortController();
+    }
+
+    wasAborted(): boolean {
+        return this.aborted;
     }
 
     async start(): Promise<void> {
@@ -46,7 +51,29 @@ export class DownloadWorker {
                 start: rangeStart,
             });
 
-            return new Promise((resolve, reject) => {
+            return new Promise<void>((resolve, reject) => {
+                let settled = false;
+
+                const signal = this.abortController.signal;
+                if (signal.aborted) {
+                    this.aborted = true;
+                    settled = true;
+                    writeStream.end();
+                    response.data.destroy();
+                    resolve();
+                    return;
+                }
+
+                const onAbort = () => {
+                    this.aborted = true;
+                    settled = true;
+                    writeStream.end();
+                    response.data.destroy();
+                    resolve();
+                };
+
+                signal.addEventListener('abort', onAbort, { once: true });
+
                 response.data.on('data', (chunk: Buffer) => {
                     this.onProgress(chunk.length);
                 });
@@ -54,20 +81,30 @@ export class DownloadWorker {
                 response.data.pipe(writeStream);
 
                 writeStream.on('finish', () => {
-                    resolve();
+                    if (!settled) {
+                        settled = true;
+                        resolve();
+                    }
                 });
 
                 writeStream.on('error', (err: Error) => {
-                    reject(err);
+                    if (!settled) {
+                        settled = true;
+                        reject(err);
+                    }
                 });
 
                 response.data.on('error', (err: Error) => {
-                    reject(err);
+                    if (!settled) {
+                        settled = true;
+                        reject(err);
+                    }
                 });
             });
         } catch (error: any) {
             if (axios.isCancel(error)) {
-                console.log('Download canceled');
+                this.aborted = true;
+                return;
             } else {
                 throw error;
             }
